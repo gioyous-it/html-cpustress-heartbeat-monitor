@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <style>
-html,body{margin:0;padding:0;width:100%;height:100%;background:transparent;overflow:hidden;font-family:Arial,sans-serif}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif}
 .overlay{display:flex;align-items:center;gap:25px;padding:20px;width:max-content;height:max-content}
 .watch{width:140px;height:140px;object-fit:contain}
 .heartbeat{color:white;font-size:72px;font-weight:bold;line-height:1;min-width:150px}
@@ -11,20 +11,28 @@ html,body{margin:0;padding:0;width:100%;height:100%;background:transparent;overf
 </head>
 <body>
 <div class="overlay">
-<img class="watch" src="watch.webp">
+<img class="watch" src="watch.gif">
 <div class="heartbeat" id="heartbeat">100</div>
 </div>
 <script>
+const params=new URLSearchParams(location.search);
+const color=params.get("color")||"black";
+const initialHeartbeat=parseFloat(params.get("initial-heartbeat"))||100;
+
+document.body.style.backgroundColor=color;
+document.getElementById("heartbeat").textContent=initialHeartbeat;
+
 let n=0;
 let lastN=0;
 let start=performance.now();
 let value=0;
+
 function benchmark(){
 for(let i=0;i<100000;i++){value=(value+i)%1000000;n++}
 const now=performance.now();
 if(now-start>=1000){
 const ratio=lastN?n/lastN:1;
-const heartbeat=Math.floor(ratio*100);
+const heartbeat=Math.floor(initialHeartbeat*ratio);
 document.getElementById("heartbeat").textContent=heartbeat;
 lastN=n;
 n=0;
@@ -32,6 +40,7 @@ start=now;
 }
 setTimeout(benchmark,0);
 }
+
 benchmark();
 </script>
 </body>
