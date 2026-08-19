@@ -42,8 +42,6 @@ function benchmark(){
 
 benchmark();
 
-const params=new URLSearchParams(location.search);
-
 if(params.has("credits")){
     const creditsElement=document.createElement("div");
     const streamCredits=params.get("credits")==="stream";
