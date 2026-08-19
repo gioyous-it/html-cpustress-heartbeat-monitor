@@ -41,3 +41,20 @@ function benchmark(){
 }
 
 benchmark();
+
+const params=new URLSearchParams(location.search);
+
+if(params.has("credits")){
+    const creditsElement=document.createElement("div");
+    const streamCredits=params.get("credits")==="stream";
+
+    creditsElement.innerHTML=streamCredits
+        ? 'heartbeat.gioyous.it<br><a href="https://github.com/gioyous-it/html-cpustress-heartbeat-monitor" target="_blank">https://github.com/gioyous-it/html-cpustress-heartbeat-monitor</a>'
+        : 'heartbeat.gioyous.it<br><a href="https://github.com/gioyous-it/html-cpustress-heartbeat-monitor" target="_blank">GitHub Repository</a>';
+
+    creditsElement.style.cssText="font-size:16px;line-height:1.4;margin-top:8px;color:white;text-align:left";
+
+    creditsElement.querySelector("a").style.cssText="font-size:11px;color:white;text-decoration:none";
+
+    document.getElementById("heartbeat").appendChild(creditsElement);
+}
