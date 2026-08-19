@@ -43,7 +43,7 @@ function benchmark(){
 benchmark();
 
 if(params.has("credits")){
-    const creditsElement=document.createElement("div");
+    const creditsElement=document.getElementById("credits");
     const streamCredits=params.get("credits")==="stream";
 
     creditsElement.innerHTML=streamCredits
@@ -53,6 +53,4 @@ if(params.has("credits")){
     creditsElement.style.cssText="font-size:16px;line-height:1.4;margin-top:8px;color:white;text-align:left";
 
     creditsElement.querySelector("a").style.cssText="font-size:11px;color:white;text-decoration:none";
-
-    document.getElementById("heartbeat").appendChild(creditsElement);
 }
