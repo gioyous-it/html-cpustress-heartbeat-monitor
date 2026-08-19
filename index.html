@@ -17,7 +17,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
 <script>
 const params=new URLSearchParams(location.search);
 const color=params.get("color")||"black";
-const initialHeartbeat=parseFloat(params.get("initial-heartbeat"))||100;
+const initialHeartbeat=parseFloat(params.get("initial"))||100;
 
 document.body.style.backgroundColor=color;
 document.getElementById("heartbeat").textContent=initialHeartbeat;
