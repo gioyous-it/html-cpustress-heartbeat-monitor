@@ -16,6 +16,9 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
 </div>
 <script>
 const params=new URLSearchParams(location.search);
+if(!params.has("color"))params.set("color","black");
+if(!params.has("initial"))params.set("initial","100");
+history.replaceState(null,"","?"+params.toString());
 const color=params.get("color")||"black";
 const initialHeartbeat=parseFloat(params.get("initial"))||100;
 
